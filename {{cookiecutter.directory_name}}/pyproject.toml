@@ -28,8 +28,8 @@ numpy
 dynamic = ["version"]
 
 [project.readme]
-file = "README.rst"
-content-type = "text/x-rst"
+file = "README.md"
+content-type = "text/markdown"
 
 [project.urls]
 
