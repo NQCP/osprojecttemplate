@@ -13,7 +13,7 @@ Documentation
 
    api/index
    example_notebooks/index
-
+   changes/index
 
 Indices and tables
 ==================
