@@ -1,2 +1,0 @@
-This repository {{cookiecutter.repository_name}} holds files and packages required to
-run experiments for {{cookiecutter.experiment_name}} conducted in {{cookiecutter.location_name}}.

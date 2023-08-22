@@ -1,13 +1,12 @@
 [build-system]
-requires = [
-    "setuptools >= 61.2",
-    "versioningit ~= 2.0.1",
-]
+requires = ["setuptools >= 61.2", "versioningit ~= 2.0.1"]
 build-backend = 'setuptools.build_meta'
 
 [project]
 name = "{{cookiecutter.package_name}}"
-maintainers = [{name = "{{cookiecutter.author}}", email = "{{cookiecutter.author_email}}"}]
+maintainers = [
+    { name = "{{cookiecutter.author}}", email = "{{cookiecutter.author_email}}" },
+]
 description = "{{cookiecutter.package_description}}"
 classifiers = [
     "Development Status :: 3 - Alpha",
@@ -19,11 +18,9 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Topic :: Scientific/Engineering",
 ]
-license = {text = "MIT"}
+license = { text = "MIT" }
 requires-python = ">=3.9"
-dependencies = [
-numpy
-]
+dependencies = ["numpy"]
 
 dynamic = ["version"]
 
@@ -49,7 +46,7 @@ test = [
     "pytest-mock>=3.0.0",
     "pytest-rerunfailures>=10.0",
     "pytest-xdist>=2.0.0",
-    "sphinx>=4.5.0",  # sphinx extension tests
+    "sphinx>=4.5.0",              # sphinx extension tests
     "types-jsonschema>=4.16.0",
     "types_requests>=0.1.8",
     "types-setuptools>=57.0.0",
@@ -66,10 +63,11 @@ docs = [
     "sphinx-issues>=3.0.1",
     "sphinx-jsonschema>=1.19.1",
     "sphinx-rtd-theme>=1.0.0",
-    "sphinxcontrib-towncrier>=0.3.0a0",
-    "towncrier>=22.8.0",
-    "scipy>=1.7.0", # examples using scipy
+    "scipy>=1.7.0",              # examples using scipy
 ]
+
+ci = ["{{cookiecutter.package_name}}[test, docs]"]
+
 
 [project.scripts]
 
@@ -79,13 +77,10 @@ omit = [
     "{{cookiecutter.package_name}}/__init__.py",
     "*/__init__.py",
     "{{cookiecutter.package_name}}/tests/*",
-    "{{cookiecutter.package_name}}/instrument_drivers/test.py"
+    "{{cookiecutter.package_name}}/instrument_drivers/test.py",
 ]
 [tool.coverage.report]
-exclude_lines = [
-    "pragma: no cover",
-    "if TYPE_CHECKING:",
-]
+exclude_lines = ["pragma: no cover", "if TYPE_CHECKING:"]
 
 [tool.darker]
 isort = true
@@ -126,9 +121,7 @@ strict_equality = true
 strict_concatenate = true
 
 [[tool.mypy.overrides]]
-module = [
-    "{{cookiecutter.package_name}}.tests.*",
-]
+module = ["{{cookiecutter.package_name}}.tests.*"]
 disallow_untyped_defs = false
 disallow_incomplete_defs = false
 
@@ -147,13 +140,14 @@ module = [
     "mcl_RF_Switch_Controller_NET45",
     "opencensus.ext.azure.*",
     "pywinusb.*",
-    "pyqtgraph.*", # can be droped once deprecated plots module is deleted
+    "pyqtgraph.*",                    # can be droped once deprecated plots module is deleted
     "ruamel",
     "spyder.utils.site",
     "spyder_kernels.customize",
     "System.IO",
     "uncertainties",
     "wrapt",
+    "versioningit",
 ]
 ignore_missing_imports = true
 
@@ -174,7 +168,7 @@ markers = "serial"
 filterwarnings = [
     "ignore:The distutils package is deprecated and slated for removal in Python 3.12:DeprecationWarning",
     "ignore:distutils Version classes are deprecated:DeprecationWarning",
-    "ignore:SelectableGroups dict interface is deprecated:DeprecationWarning"
+    "ignore:SelectableGroups dict interface is deprecated:DeprecationWarning",
 ]
 
 [tool.ruff]
@@ -188,27 +182,6 @@ ignore = ["E501"]
 # deprecated modules left
 # for backwards compatibility
 
-
-[tool.towncrier]
-package = "{{cookiecutter.package_name}}"
-name = "{{cookiecutter.directory_name}}"
-directory = "docs/changes/newsfragments"
-single_file = false
-filename = "docs/changes/{version}.rst"
-issue_format = ":pr:`{issue}`"
-
-[tool.towncrier.fragment.breaking]
-name = "Breaking Changes:"
-[tool.towncrier.fragment.new]
-name = "New:"
-[tool.towncrier.fragment.improved]
-name = "Improved:"
-[tool.towncrier.fragment.new_driver]
-name = "New Drivers:"
-[tool.towncrier.fragment.improved_driver]
-name = "Improved Drivers:"
-[tool.towncrier.fragment.underthehood]
-name = "Under the hood:"
 
 [tool.versioningit]
 default-version = "0.0"
