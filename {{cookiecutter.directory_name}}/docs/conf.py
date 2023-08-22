@@ -18,7 +18,7 @@ import os
 import sys
 import sphinx_rtd_theme
 
-sys.path.insert(0, os.path.abspath('..'))
+sys.path.insert(0, os.path.abspath(".."))
 
 # -- Project information -----------------------------------------------------
 
@@ -33,20 +33,20 @@ project_description = "{{cookiecutter.package_description}}"
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-        'nbsphinx',
-        'sphinx.ext.autodoc',
-        'sphinx.ext.autosummary',
-        'sphinx.ext.napoleon',
-        'sphinx-jsonschema',
-        'sphinx.ext.doctest',
-        'sphinx.ext.intersphinx',
-        'sphinx.ext.todo',
-        'sphinx.ext.coverage',
-        'sphinx.ext.mathjax',
-        'sphinx.ext.viewcode',
-        'sphinx.ext.githubpages',
-        'sphinx.ext.todo'
-        ]
+    "nbsphinx",
+    "sphinx.ext.autodoc",
+    "sphinx.ext.autosummary",
+    "sphinx.ext.napoleon",
+    "sphinx-jsonschema",
+    "sphinx.ext.doctest",
+    "sphinx.ext.intersphinx",
+    "sphinx.ext.todo",
+    "sphinx.ext.coverage",
+    "sphinx.ext.mathjax",
+    "sphinx.ext.viewcode",
+    "sphinx.ext.githubpages",
+    "sphinx.ext.todo",
+]
 
 # include special __xxx__ that DO have a docstring
 # it probably means something important
@@ -56,14 +56,14 @@ napoleon_include_special_with_doc = True
 # You can specify multiple suffix as a list of string:
 #
 # source_suffix = ['.rst', '.md']
-source_suffix = '.rst'
+source_suffix = ".rst"
 
 # The encoding of source files.
 #
 # source_encoding = 'utf-8-sig'
 
 # The master toctree document.
-master_doc = 'index'
+master_doc = "index"
 
 # auto versioning
 # version = '{}'.format({{cookiecutter.package_name}}.__version__)
@@ -90,8 +90,14 @@ language = "en"
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '_templates', '_auto',
-                    '**.ipynb_checkpoints']
+exclude_patterns = [
+    "_build",
+    "Thumbs.db",
+    ".DS_Store",
+    "_templates",
+    "_auto",
+    "**.ipynb_checkpoints",
+]
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
@@ -113,7 +119,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '_templates', '_auto',
 # show_authors = False
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'sphinx'
+pygments_style = "sphinx"
 
 # A list of ignored prefixes for module index sorting.
 # modindex_common_prefix = []
@@ -164,7 +170,7 @@ html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+html_static_path = ["_static"]
 
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied
@@ -244,35 +250,31 @@ html_show_copyright = False
 # html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = f'{project} docs'
+htmlhelp_basename = f"{project} docs"
 
 # -- Options for LaTeX output ---------------------------------------------
 
 latex_elements = {
-        # The paper size ('letterpaper' or 'a4paper').
-        #
-        # 'papersize': 'letterpaper',
-
-        # The font size ('10pt', '11pt' or '12pt').
-        #
-        # 'pointsize': '10pt',
-
-        # Additional stuff for the LaTeX preamble.
-        #
-        # 'preamble': '',
-
-        # Latex figure (float) alignment
-        #
-        # 'figure_align': 'htbp',
-        }
+    # The paper size ('letterpaper' or 'a4paper').
+    #
+    # 'papersize': 'letterpaper',
+    # The font size ('10pt', '11pt' or '12pt').
+    #
+    # 'pointsize': '10pt',
+    # Additional stuff for the LaTeX preamble.
+    #
+    # 'preamble': '',
+    # Latex figure (float) alignment
+    #
+    # 'figure_align': 'htbp',
+}
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-        (master_doc, f'{project}.tex', f'{project} Documentation',
-            f'{author}', 'manual'),
-        ]
+    (master_doc, f"{project}.tex", f"{project} Documentation", f"{author}", "manual"),
+]
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
@@ -305,10 +307,7 @@ latex_documents = [
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [(master_doc,
-              f"{project}",
-              f"{project} Documentation",
-              [author], 1)]
+man_pages = [(master_doc, f"{project}", f"{project} Documentation", [author], 1)]
 
 # If true, show URL addresses after external links.
 #
@@ -321,10 +320,16 @@ man_pages = [(master_doc,
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-        (master_doc, f"{project}",
-         f"{project} Documentation",
-            author, f"{project}", f'{project_description}',
-            'Miscellaneous')]
+    (
+        master_doc,
+        f"{project}",
+        f"{project} Documentation",
+        author,
+        f"{project}",
+        f"{project_description}",
+        "Miscellaneous",
+    )
+]
 
 # Documents to append as an appendix to all manuals.
 #
@@ -336,7 +341,7 @@ texinfo_documents = [
 
 # How to display URL addresses: 'footnote', 'no', or 'inline'.
 #
-texinfo_show_urls = 'footnote'
+texinfo_show_urls = "footnote"
 
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #
@@ -345,14 +350,14 @@ texinfo_show_urls = 'footnote'
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {
-    'pandas': ('https://pandas.pydata.org/pandas-docs/stable/', None),
-    'matplotlib': ('https://matplotlib.org/', None),
-    'python': ('https://docs.python.org/3.6', None),
-    'numpy': ('https://numpy.org/doc/stable/', None),
-    'py': ('https://pylib.readthedocs.io/en/stable/', None),
-    'pyvisa': ('https://pyvisa.readthedocs.io/en/stable/', None),
-    'qcodes': ('https://qcodes.github.io/Qcodes/', None),
-    'IPython': ('https://ipython.readthedocs.io/en/stable/', None)
+    "pandas": ("https://pandas.pydata.org/pandas-docs/stable/", None),
+    "matplotlib": ("https://matplotlib.org/", None),
+    "python": ("https://docs.python.org/3.6", None),
+    "numpy": ("https://numpy.org/doc/stable/", None),
+    "py": ("https://pylib.readthedocs.io/en/stable/", None),
+    "pyvisa": ("https://pyvisa.readthedocs.io/en/stable/", None),
+    "qcodes": ("https://qcodes.github.io/Qcodes/", None),
+    "IPython": ("https://ipython.readthedocs.io/en/stable/", None),
 }
 
 
@@ -360,44 +365,48 @@ autoclass_content = "both"
 # classes should include both the
 # class' and the __init__ method's docstring
 autosummary_generate = True
-autodoc_member_order = 'bysource'
-autodoc_default_options = {'members': True,
-                           'undoc-members': True,
-                           'inherited-members': True,
-                           'show-inheritance': True}
+autodoc_member_order = "bysource"
+autodoc_default_options = {
+    "members": True,
+    "undoc-members": True,
+    "inherited-members": True,
+    "show-inheritance": True,
+}
 
 # we mock modules that for one reason or another are not
 # there when generating the docs
 autodoc_mock_imports = []
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ["_templates"]
 
 # we are using non local images for badges. These will change so we dont
 # want to store them locally.
-suppress_warnings = ['image.nonlocal_uri']
+suppress_warnings = ["image.nonlocal_uri"]
 
 nitpicky = False
 
 
 # we allow most types from the typing modules to be used in
 # docstrings even if they don't resolve
-nitpick_ignore = [('py:class', 'Optional'),
-                  ('py:class', 'Union'),
-                  ('py:class', 'Any'),
-                  ('py:class', 'Tuple'),
-                  ('py:class', 'List'),
-                  ('py:class', 'Sequence'),
-                  ('py:class', 'Iterable'),
-                  ('py:class', 'Type')]
+nitpick_ignore = [
+    ("py:class", "Optional"),
+    ("py:class", "Union"),
+    ("py:class", "Any"),
+    ("py:class", "Tuple"),
+    ("py:class", "List"),
+    ("py:class", "Sequence"),
+    ("py:class", "Iterable"),
+    ("py:class", "Type"),
+]
 
 numfig = True
 
 # Use this kernel instead of the one stored in the notebook metadata:
-nbsphinx_kernel_name = 'python3'
+nbsphinx_kernel_name = "python3"
 # We always execute notebooks
 # -unless the notebook itself has the following entry:
 # "nbsphinx": {
 #    "execute": "never"
 #   }
-nbsphinx_execute = 'always'
+nbsphinx_execute = "always"
