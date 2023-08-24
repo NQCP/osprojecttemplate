@@ -13,8 +13,7 @@ If you have gotten '{{cookiecutter.package_name}}' from source, you may run the 
 Install `{{cookiecutter.package_name}}` along with its test dependencies into your virtual environment by executing the following in the root folder
 
 ```bash
-$ pip install .
-$ pip install -r test_requirements.txt
+$ pip install .[test]
 ```
 
 Then run `pytest` in the `tests` folder.
@@ -26,8 +25,7 @@ If you have gotten `{{cookiecutter.package_name}}` from source, you may build th
 Install `{{cookiecutter.package_name}}` along with its documentation dependencies into your virtual environment by executing the following in the root folder
 
 ```bash
-$ pip install .
-$ pip install -r docs_requirements.txt
+$ pip install .[docs]
 ```
 
 You also need to install `pandoc`. If you are using `conda`, that can be achieved by
