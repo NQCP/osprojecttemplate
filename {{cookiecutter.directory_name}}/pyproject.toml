@@ -63,7 +63,8 @@ docs = [
     "sphinx-issues>=3.0.1",
     "sphinx-jsonschema>=1.19.1",
     "sphinx-rtd-theme>=1.0.0",
-    "scipy>=1.7.0",              # examples using scipy
+    "scipy>=1.7.0",
+    "ipykernel",                 # examples using scipy
 ]
 
 ci = ["{{cookiecutter.package_name}}[test, docs]"]
