@@ -6,5 +6,7 @@
     "greeting_recipient": "Julie",
     "author": "Rasmus Bjerregaard Christensen",
     "author_email": "rbcmail@gmail.com",
-    "copyright": "Rasmus Bjerregaard Christensen"
+    "copyright": "Rasmus Bjerregaard Christensen",
+    "a_start" : "${",
+    "a_end": "}"
 }

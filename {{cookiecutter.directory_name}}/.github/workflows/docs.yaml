@@ -1,8 +1,5 @@
 name: build docs
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
 on:
   push:
     branches:
@@ -16,7 +13,7 @@ on:
 jobs:
   builddocs:
 
-    runs-on: ${{ matrix.os }}
+    runs-on: {{cookiecutter.a_start}}{ matrix.os }{{cookiecutter.a_end}}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
@@ -27,13 +24,13 @@ jobs:
           - os: windows-latest
             python-version: 3.10
     env:
-      OS: ${{ matrix.os }}
-      UPLOAD_TO_GHPAGES: "$matrix.os == 'ubuntu-latest' && matrix.python-version == '3.10' && github.event_name == 'push' && github.ref == 'refs/heads/main' "
+      OS: {{cookiecutter.a_start}}{ matrix.os }{{cookiecutter.a_end}}
+      UPLOAD_TO_GHPAGES: {{cookiecutter.a_start}}{ matrix.os == 'ubuntu-latest' && matrix.python-version == '3.10' && github.event_name == 'push' && github.ref == 'refs/heads/master' }{{cookiecutter.a_end}}
       # we expect no warnings from Sphinx in 3.10
       # The std-lib docstring of IntEnum in 3.11.0 is not valid
       # causing errors like in the docstring of from_bytes (from Int)
       # WARNING: Inline interpreted text or phrase reference start-string without end-string.
-      SPHINX_WARNINGS_AS_ERROR: ${{ matrix.python-version == '3.10' }}
+      SPHINX_WARNINGS_AS_ERROR: {{cookiecutter.a_start}}{ matrix.python-version == '3.10' }{{cookiecutter.a_end}}
       SPHINX_OPTS: "-v"
     steps:
     - uses: actions/checkout@v3.5.3
@@ -43,7 +40,7 @@ jobs:
     - name: set-sphinx-opts
       run: |
         echo "SPHINX_OPTS=-W -v" >> $GITHUB_ENV
-      if: ${{ fromJSON(env.SPHINX_WARNINGS_AS_ERROR) }}
+      if: {{cookiecutter.a_start}}{ fromJSON(env.SPHINX_WARNINGS_AS_ERROR) }{{cookiecutter.a_end}}
     - name: install pandoc linux
       run: |
         sudo apt update
@@ -58,10 +55,10 @@ jobs:
         attempt_limit: 5
         attempt_delay: 1000
       if: runner.os == 'Windows'
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Set up Python {{cookiecutter.a_start}}{ matrix.python-version }{{cookiecutter.a_end}}
       uses: actions/setup-python@v4.3.1
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: {{cookiecutter.a_start}}{ matrix.python-version }{{cookiecutter.a_end}}
         cache: 'pip'
         cache-dependency-path: |
           pyproject.toml
@@ -74,27 +71,27 @@ jobs:
     - name: Build docs on linux
       run: |
         cd docs
-        export SPHINXOPTS="${{ env.SPHINX_OPTS }}"
+        export SPHINXOPTS="{{cookiecutter.a_start}}{ env.SPHINX_OPTS }{{cookiecutter.a_end}}"
         make html
       if: runner.os == 'Linux'
     - name: Build docs on windows
       run: |
         cd docs
-        $env:SPHINXOPTS = "${{ env.SPHINX_OPTS }}"
+        $env:SPHINXOPTS = "{{cookiecutter.a_start}}{ env.SPHINX_OPTS }{{cookiecutter.a_end}}"
         ./make.bat html
       if: runner.os == 'Windows'
     - name: Upload build docs
       uses: actions/upload-artifact@v3.1.2
       with:
-        name: docs_${{ matrix.python-version }}_${{ matrix.os }}
-        path: ${{ github.workspace }}/docs/_build/html
+        name: docs_{{cookiecutter.a_start}}{ matrix.python-version }{{cookiecutter.a_end}}_{{cookiecutter.a_start}}{ matrix.os }{{cookiecutter.a_end}}
+        path: {{cookiecutter.a_start}}{ github.workspace }{{cookiecutter.a_end}}/docs/_build/html
     - name: Deploy to gh pages
       uses: JamesIves/github-pages-deploy-action@v4.4.3
       with:
         branch: gh-pages
-        folder: ${{ github.workspace }}/docs/_build/html
+        folder: {{cookiecutter.a_start}}{ github.workspace }{{cookiecutter.a_end}}/docs/_build/html
         clean: true
         single-commit: true
         git-config-email: "bot"
         git-config-name: "Documentation Bot"
-      if: ${{ fromJSON(env.UPLOAD_TO_GHPAGES) }}
+      if: {{cookiecutter.a_start}}{ fromJSON(env.UPLOAD_TO_GHPAGES) }{{cookiecutter.a_end}}

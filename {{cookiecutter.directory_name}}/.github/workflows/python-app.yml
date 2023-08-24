@@ -1,8 +1,6 @@
 name: Run mypy and pytest
 
-#concurrency:
-#  group: ${{ github.workflow }}-${{ github.ref }}
-#  cancel-in-progress: true
+
 on:
   push:
     branches:
@@ -16,7 +14,7 @@ on:
 jobs:
   pytestmypy:
 
-    runs-on: ${{ matrix.os }}
+    runs-on: {{cookiecutter.a_start}}{ matrix.os }{{cookiecutter.a_end}}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
@@ -27,8 +25,8 @@ jobs:
           - os: windows-latest
             python-version: "3.11"
     env:
-      OS: ${{ matrix.os }}
-      PYTHON: ${{ matrix.python-version }}
+      OS: {{cookiecutter.a_start}}{ matrix.os }{{cookiecutter.a_end}}
+      PYTHON: {{cookiecutter.a_start}}{ matrix.python-version }{{cookiecutter.a_end}}
 
     steps:
     - uses: actions/checkout@v3.5.3
@@ -36,10 +34,10 @@ jobs:
         submodules: true
         # we need full history with tags for the version number
         fetch-depth: '0'
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Set up Python {{cookiecutter.a_start}}{ matrix.python-version }{{cookiecutter.a_end}}
       uses: actions/setup-python@v4.3.1
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: {{cookiecutter.a_start}}{ matrix.python-version }{{cookiecutter.a_end}}
         cache: 'pip'
         cache-dependency-path: |
           pyproject.toml
