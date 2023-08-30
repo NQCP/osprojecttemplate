@@ -40,6 +40,9 @@ git tag -a v0.0.0 -m "first tag"
 git remote add origin https://github.com/<your githubpage>/<Repo Name>.git
 git branch -M main
 git push
+git checkout -b gh-pages
+git push --set-upstream origin gh-pages
+git checkout main
 ```
 
 ### Set Up IO
@@ -47,3 +50,8 @@ git push
 go to: 
 https://github.com/<your githubpage>/<Repo Name>/settings
 and select the branch "gh-pages" and dir "root" 
+
+Change these settings under Settings-Action-General. 
+Workflow Permissions: Rean and Write
+Allow GitHub Actions to approve pull requests
+I'm not sure if both are needed, but enabling both got me past this
