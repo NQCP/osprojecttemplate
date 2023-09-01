@@ -21,7 +21,7 @@ The first step is to activate the cookiecutter environment, and execute the cook
 
 ```console
 conda activate cookiecutter
-cookiecutter.exe osprojecttemplate
+cookiecutter.exe https://github.com/NQCP/osprojecttemplate.git
 ```
 
 You will be asked to enter some information about your project. After that the project will be created.
