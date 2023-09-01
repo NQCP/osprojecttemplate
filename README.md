@@ -25,8 +25,17 @@ cookiecutter.exe https://github.com/NQCP/osprojecttemplate.git
 ```
 
 You will be asked to enter some information about your project. After that the project will be created.
+
+- directory_name: The name of the directory. This will be the name of the folder contaning documentation, configuration files and a subfolder (package_name) containing the python files. Use CamelCase.
+- package_name: The name of the package. This will be the name of the folder and the name of the package. Remember to only use small letters.
+- package_description: A short description of the package.
+- author: Your name or the name of the author of the package.
+- author_email: Your email address.
+- copyrigh: Your name or the name of the orginasation which have the copyright to the package.
+- a_start: a workaround to get the project to work with GitHub actions. So just press enter to accept the default answers.
+- a_end: a workaround to get the project to work with GitHub actions. So just press enter to accept the default answers.
+
 Note that the project will be created in the current directory.
-Further, note that the last two questions are a workaround to get the project to work with GitHub actions. So just press enter to accept the default answers.
 
 Second you need to make a Repo on GitHub and push the project to it.
 To push the project to GitHub,
@@ -39,7 +48,7 @@ git commit -m 'first commit'
 git tag -a v0.0.0 -m "first tag"
 git remote add origin https://github.com/<your githubpage>/<Repo Name>.git
 git branch -M main
-git push
+git push  --set-upstream origin main
 git checkout -b gh-pages
 git push --set-upstream origin gh-pages
 git checkout main
