@@ -49,6 +49,7 @@ git tag -a v0.0.0 -m "first tag"
 git remote add origin https://github.com/<your githubpage>/<Repo Name>.git
 git branch -M main
 git push  --set-upstream origin main
+git push  --tags
 git checkout -b gh-pages
 git push --set-upstream origin gh-pages
 git checkout main
