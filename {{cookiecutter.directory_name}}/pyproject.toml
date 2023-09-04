@@ -185,7 +185,7 @@ ignore = ["E501"]
 
 
 [tool.versioningit]
-default-version = "0.0"
+default-version = "0.0.0"
 
 [tool.versioningit.format]
 distance = "{next_version}.dev{distance}+{branch}.{vcs}{rev}"
