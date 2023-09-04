@@ -2,8 +2,6 @@
     "directory_name": "NameOfDirectory",
     "package_name": "packagename",
     "package_description": "package_description",
-    "file_name": "Howdy",
-    "greeting_recipient": "Julie",
     "author": "Rasmus Bjerregaard Christensen",
     "author_email": "rbcmail@gmail.com",
     "copyright": "Rasmus Bjerregaard Christensen",
