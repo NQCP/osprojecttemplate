@@ -1,7 +1,7 @@
 # {{cookiecutter.package_name}}
 
 # Description
-
+[Examples](https://nqcp.github.io/{{cookiecutter.package_name}}/example_notebooks/index.html)
 # Installation
 
 # Usage
