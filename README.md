@@ -1,4 +1,9 @@
 # Cookie Cutter Template
+<p align="center">
+  <img src="https://img.shields.io/static/v1?style=for-the-badge&label=code-status&message=Good&color=green"/>
+  <img src="https://img.shields.io/static/v1?style=for-the-badge&label=initial-commit&message=RasmusBC59&color=inactive"/>
+    <img src="https://img.shields.io/static/v1?style=for-the-badge&label=maintainer&message=NQCP&color=inactive"/>
+</p>
 
 This is a cookicutter template for easy creation of a python package.
 
