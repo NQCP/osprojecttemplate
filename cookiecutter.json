@@ -4,7 +4,7 @@
     "package_description": "package_description",
     "author": "Rasmus Bjerregaard Christensen",
     "author_email": "rbcmail@gmail.com",
-    "copyright": "Rasmus Bjerregaard Christensen",
+    "copyright": "NQCP",
     "a_start" : "${",
     "a_end": "}"
 }
