@@ -42,16 +42,15 @@ You will be asked to enter some information about your project. After that the p
 
 Note that the project will be created in the current directory.
 
-Second you need to make a Repo on GitHub and push the project to it.
-To push the project to GitHub,
-go to the new directory and execute:
+Second you need to make a Repo, on GitHub or Azure DevOps, and push the project to it.
+To push the project to GitHub or Azure DevOps, navigate to the project directory in the terminal and execute:
 
 ```console
 git init
 git add .
 git commit -m 'first commit'
 git tag -a v0.0.0 -m "first tag"
-git remote add origin https://github.com/<your githubpage>/<Repo Name>.git
+git remote add origin url_to_repo
 git branch -M main
 git push  --set-upstream origin main
 git push  --tags
@@ -61,7 +60,8 @@ git checkout main
 ```
 
 ### Set Up IO
-
+#### GitHub
+If you are using GitHub, you can set up GitHub Pages to host the documentation.
 go to: 
 https://github.com/<your githubpage>/<Repo Name>/settings
 and select the branch "gh-pages" and dir "root" 
@@ -70,3 +70,6 @@ Change these settings under Settings-Action-General.
 Workflow Permissions: Rean and Write
 Allow GitHub Actions to approve pull requests
 I'm not sure if both are needed, but enabling both got me past this
+
+#### Azure DevOps
+TBW
