@@ -47,6 +47,7 @@ To push the project to GitHub or Azure DevOps, navigate to the project directory
 
 ```console
 git init
+git config --local core.hooksPath .githooks/
 git add .
 git commit -m 'first commit'
 git tag -a v0.0.0 -m "first tag"
