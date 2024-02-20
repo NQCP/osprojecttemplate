@@ -9,7 +9,7 @@ This is a cookicutter template for easy creation of a python package.
 
 ## Install cookiecutter
 
-The first step is to make a new environment and install the cookiecutter package.
+The **first step** is to make a new environment and install the cookiecutter package.
 Launch a prompt and type:
 
 ```console
@@ -22,7 +22,7 @@ Alternative you can consult the [installation guide](https://cookiecutter.readth
 
 ## How to use this  cookie cutter template
 
-The first step is to activate the cookiecutter environment, and execute the cookiecutter command:
+The **second** step is to activate the cookiecutter environment, and execute the cookiecutter command:
 
 ```console
 conda activate cookiecutter
@@ -42,16 +42,18 @@ You will be asked to enter some information about your project. After that the p
 
 Note that the project will be created in the current directory.
 
-Second you need to make a Repo, on GitHub or Azure DevOps, and push the project to it.
-To push the project to GitHub or Azure DevOps, navigate to the project directory in the terminal and execute:
+The **third** step is to make a Repo, on GitHub or Azure DevOps, and push the project to it. Thus, go to GitHub or Azure DevOps and create a new repository. Then follow the instructions below. You will need the URL to the repository in the steps below. 
+
+The **fourth** step is to push the project to GitHub or Azure DevOps, navigate to the project directory in the terminal and execute:
 
 ```console
+cd <directory_name>
 git init
 git add .
 git commit -m 'first commit'
 git config --local core.hooksPath .githooks/
 git tag -a v0.0.0 -m "first tag"
-git remote add origin url_to_repo
+git remote add origin  <URL to your repo\>
 git branch -M main
 git push  --set-upstream origin main
 git push  --tags
