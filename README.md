@@ -9,6 +9,8 @@ This is a cookicutter template for easy creation of a python package.
 
 ## Install cookiecutter
 
+Skip this step, if you have installed it before.
+
 The **first step** is to make a new environment and install the cookiecutter package.
 Launch a prompt and type:
 
@@ -29,7 +31,7 @@ conda activate cookiecutter
 cookiecutter.exe https://github.com/NQCP/osprojecttemplate.git
 ```
 
-You will be asked to enter some information about your project. After that the project will be created.
+You will be asked to enter some information about your project. After that the project will be created in the current directory.
 
 - directory_name: The name of the directory. This will be the name of the folder contaning documentation, configuration files and a subfolder (package_name) containing the python files. Use CamelCase.
 - package_name: The name of the package. This will be the name of the folder and the name of the package. Remember to only use small letters.
@@ -39,8 +41,6 @@ You will be asked to enter some information about your project. After that the p
 - copyrigh: Your name or the name of the orginasation which have the copyright to the package.
 - a_start: a workaround to get the project to work with GitHub actions. So just press enter to accept the default answers.
 - a_end: a workaround to get the project to work with GitHub actions. So just press enter to accept the default answers.
-
-Note that the project will be created in the current directory.
 
 The **third** step is to make a Repo, on GitHub or Azure DevOps, and push the project to it. Thus, go to GitHub or Azure DevOps and create a new repository. Then follow the instructions below. You will need the URL to the repository in the steps below. 
 
