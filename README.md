@@ -66,7 +66,7 @@ git checkout main
 #### GitHub
 If you are using GitHub, you can set up GitHub Pages to host the documentation.
 go to: 
-https://github.com/<your githubpage>/<Repo Name>/settings
+https://github.com/"your githubpage"/"Repo Name"/settings
 and select the branch "gh-pages" and dir "root" 
 
 Change these settings under Settings-Action-General. 
