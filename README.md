@@ -70,7 +70,7 @@ https://github.com/"your githubpage"/"Repo Name"/settings
 and select the branch "gh-pages" and dir "root" 
 
 Change these settings under Settings-Action-General. 
-Workflow Permissions: Rean and Write
+Workflow Permissions: Read and Write
 Allow GitHub Actions to approve pull requests
 I'm not sure if both are needed, but enabling both got me past this
 
