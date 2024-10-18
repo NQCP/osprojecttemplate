@@ -16,22 +16,21 @@
 #
 import os
 import sys
-# Remove the deprecated
-""" import sphinx_rtd_theme """
+import versioningit
+import {{cookiecutter.package_name}}
+
 from pathlib import Path
 from packaging.version import parse
-import versioningit
-sys.path.insert(0, os.path.abspath("../nqcp_dp_git_wiki"))
-import nqcp_dp_git_wiki
+sys.path.insert(0, os.path.abspath(".."))
 # Set the project directory to the root of your project
 project_dir = Path(__file__).resolve().parent.parent
 # Get the version using versioningit
 __version__ = versioningit.get_version(project_dir=project_dir)
 
-project = "nqcp_dp_git_wiki"
-copyright = "NQCP"
-author = "David Scavnicky"
-project_description = "testing_devops_nqcp_dp_git_wiki"
+project = "{{cookiecutter.package_name}}"
+copyright = "{{cookiecutter.copyright}}"
+author = "{{cookiecutter.author}}"
+project_description = "{{cookiecutter.package_description}}"
 
 # -- General configuration ---------------------------------------------------
 
