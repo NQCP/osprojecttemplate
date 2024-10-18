@@ -16,17 +16,22 @@
 #
 import os
 import sys
-import sphinx_rtd_theme
-import {{cookiecutter.package_name}}
+# Remove the deprecated
+""" import sphinx_rtd_theme """
+from pathlib import Path
 from packaging.version import parse
-sys.path.insert(0, os.path.abspath(".."))
+import versioningit
+sys.path.insert(0, os.path.abspath("../nqcp_dp_git_wiki"))
+import nqcp_dp_git_wiki
+# Set the project directory to the root of your project
+project_dir = Path(__file__).resolve().parent.parent
+# Get the version using versioningit
+__version__ = versioningit.get_version(project_dir=project_dir)
 
-# -- Project information -----------------------------------------------------
-
-project = "{{cookiecutter.package_name}}"
-copyright = "{{cookiecutter.copyright}}"
-author = "{{cookiecutter.author}}"
-project_description = "{{cookiecutter.package_description}}"
+project = "nqcp_dp_git_wiki"
+copyright = "NQCP"
+author = "David Scavnicky"
+project_description = "testing_devops_nqcp_dp_git_wiki"
 
 # -- General configuration ---------------------------------------------------
 
@@ -144,29 +149,6 @@ html_theme = "sphinx_rtd_theme"
 # documentation.
 #
 # html_theme_options = {}
-
-# Add any paths that contain custom themes here, relative to this directory.
-html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
-
-# The name for this set of Sphinx documents.
-# "<project> v<release> documentation" by default.
-#
-# html_title = 'Qchar v1'
-
-# A shorter title for the navigation bar.  Default is the same as html_title.
-#
-# html_short_title = None
-
-# The name of an image file (relative to this directory) to place at the top
-# of the sidebar.
-#
-# html_logo = None
-
-# The name of an image file (relative to this directory) to use as a favicon of
-# the docs.  This file should be a Windows icon file (.ico) being 16x16 or
-# 32x32 pixels large.
-#
-# html_favicon = None
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
