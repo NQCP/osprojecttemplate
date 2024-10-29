@@ -31,8 +31,8 @@ cookiecutter.exe https://github.com/NQCP/osprojecttemplate.git
 
 You will be asked to enter some information about your project. After that the project will be created.
 
-- directory_name: The name of the directory. This will be the name of the folder contaning documentation, configuration files and a subfolder (package_name) containing the python files. Use CamelCase.
-- package_name: The name of the package. This will be the name of the folder and the name of the package. Remember to only use small letters.
+- directory_name: The name of the directory. This will be the name of the future repository and the folder contaning documentation, configuration files and a subfolder (package_name) containing the python files. Follow the naming convention in the [devops wiki](https://dev.azure.com/NQCP/NQCP/_wiki/wikis/NQCP.wiki/118/Code-repositories?anchor=standards-for-all-nqcp-code-repositories) (for example NQCP-Phot-Git-Drivers).
+- package_name: The name of the package. This will be the name of the subfolder and the name of the package. Only use lower case letters.
 - package_description: A short description of the package.
 - author: Your name or the name of the author of the package.
 - author_email: Your email address.
@@ -42,9 +42,9 @@ You will be asked to enter some information about your project. After that the p
 
 Note that the project will be created in the current directory.
 
-The **third** step is to make a Repo, on GitHub or Azure DevOps, and push the project to it. Thus, go to GitHub or Azure DevOps and create a new repository. Then follow the instructions below. You will need the URL to the repository in the steps below. 
+The **third** step is to make a Repo, on GitHub or Azure DevOps. Thus, go to GitHub or Azure DevOps and create a new repository. Use the same directory_name from above as the repository name. Creating the repository will give you an URL, which you will need in the steps below. 
 
-The **fourth** step is to push the project to GitHub or Azure DevOps, navigate to the project directory in the terminal and execute:
+The **fourth** step is to push the project to GitHub or Azure DevOps. In the terminal, navigate to the project directory created earlier and execute:
 
 ```console
 cd <directory_name>
