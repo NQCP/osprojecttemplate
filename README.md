@@ -50,7 +50,7 @@ The **fourth** step is to push the project to GitHub or Azure DevOps. In the ter
 cd <directory_name>
 git init
 git add .
-git commit -m 'first commit'
+git commit -m "first commit"
 git config --local core.hooksPath .githooks/
 git tag -a v0.0.0 -m "first tag"
 git remote add origin  <URL to your repo\>
