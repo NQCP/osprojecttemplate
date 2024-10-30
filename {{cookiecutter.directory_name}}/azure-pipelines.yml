@@ -30,7 +30,7 @@ steps:
   displayName: 'pytest'
 
 - script: |
-    mypy -p labguruapi
+    mypy -p {{cookiecutter.package_name}}
   displayName: 'mypy'
 
 - script: |
@@ -38,7 +38,7 @@ steps:
   displayName: 'Install Pandoc'
 
 - script: |
-    git checkout -b gp-pages
+    git checkout -b gh-pages
     cd docs
     make html
   displayName: 'Build docs'
