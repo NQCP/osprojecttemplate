@@ -4,6 +4,8 @@ build-backend = 'setuptools.build_meta'
 
 [project]
 name = "{{cookiecutter.package_name}}"
+version = "0.0.0"  # This will be overridden by versioningit, TODO CHECK; for some reason versioningit fails to determine the version, this value will be used
+
 maintainers = [
     { name = "{{cookiecutter.author}}", email = "{{cookiecutter.author_email}}" },
 ]
