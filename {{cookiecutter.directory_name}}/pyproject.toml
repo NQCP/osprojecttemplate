@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools >= 61.2", "versioningit ~= 2.0.1"]
+requires = ["setuptools >= 61.2", "versioningit ~= 3.1.2"]
 build-backend = 'setuptools.build_meta'
 
 [project]
@@ -20,7 +20,7 @@ classifiers = [
 ]
 license = { text = "MIT" }
 requires-python = ">=3.9"
-dependencies = ["numpy", "versioningit~=2.0.1",]
+dependencies = ["numpy", "versioningit ~= 3.1.2"]
 
 dynamic = ["version"]
 
@@ -186,7 +186,11 @@ ignore = ["E501"]
 
 
 [tool.versioningit]
-default-version = "0.0.0"
+# default-version = "2.2.1"  
+
+# Default not specified, versioningit to derive the version from Git tags
+# want versioningit to handle the version dynamically based on Git tags from remote, 
+# it's generally best to omit default-version unless you need a hardcoded fallback.
 
 [tool.versioningit.format]
 distance = "{next_version}.dev{distance}+{branch}.{vcs}{rev}"

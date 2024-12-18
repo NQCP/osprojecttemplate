@@ -26,5 +26,5 @@ def _get_version() -> str:
 
 __version__ = _get_version()
 
-
+# set by default, but can be overridden in the pyproject.toml
 """ __version__ = "0.1.1" """
