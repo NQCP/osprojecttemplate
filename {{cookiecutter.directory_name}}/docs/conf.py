@@ -239,7 +239,7 @@ htmlhelp_basename = f"{project} docs"
 
 # -- Options for LaTeX output ---------------------------------------------
 
-latex_elements = {
+latex_elements: dict[str, str] = {
     # The paper size ('letterpaper' or 'a4paper').
     #
     # 'papersize': 'letterpaper',
@@ -360,7 +360,7 @@ autodoc_default_options = {
 
 # we mock modules that for one reason or another are not
 # there when generating the docs
-autodoc_mock_imports = []
+autodoc_mock_imports: list[str] = []
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
