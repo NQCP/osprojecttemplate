@@ -1,10 +1,10 @@
 def _get_version() -> str:
     from pathlib import Path
     import versioningit
-    import nqcpdpgitforwiki
+    import {{cookiecutter.package_name}}
 
-    nqcpdpgitforwiki_path = Path(nqcpdpgitforwiki.__file__).parent
-    project_dir = nqcpdpgitforwiki_path.parent
+    path = Path({{cookiecutter.package_name}}.__file__).parent
+    project_dir = path.parent
 
     # Check if running from site-packages and it indicates that the package has been installed
     if "site-packages" in str(project_dir):
@@ -25,6 +25,3 @@ def _get_version() -> str:
     return version
 
 __version__ = _get_version()
-
-# set by default, but can be overridden in the pyproject.toml
-""" __version__ = "0.1.1" """
