@@ -3,48 +3,53 @@
 # Add steps that analyze code, save the dist with the build record, publish to a PyPI-compatible index, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/python
 
-trigger:
-- main
+name: Python package
 
-pool:
-  vmImage: ubuntu-latest
-strategy:
-  matrix:
-    Python310:
-      python.version: '3.11'
+on:
+  push:
+    branches:
+      - main
 
-steps:
-- task: UsePythonVersion@0
-  inputs:
-    versionSpec: '$(python.version)'
-  displayName: 'Use Python $(python.version)'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.11']
 
-- script: |
-    python -m pip install --upgrade pip setuptools wheel
-    pip install -e .[ci]
-  displayName: 'Install dependencies'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-- script: |
-    pip install pytest pytest-azurepipelines
-    pytest
-  displayName: 'pytest'
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
 
-- script: |
-    mypy -p {{cookiecutter.package_name}}
-  displayName: 'mypy'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip setuptools wheel
+        pip install -e .[ci]
 
-- script: |
-    sudo apt-get install -y pandoc
-  displayName: 'Install Pandoc'
+    - name: Run pytest
+      run: |
+        pip install pytest pytest-azurepipelines
+        pytest
 
-- script: |
-    git checkout -b gh-pages
-    cd docs
-    make html
-  displayName: 'Build docs'
+    - name: Run mypy
+      run: mypy -p {{cookiecutter.package_name}}
 
-- task: PublishBuildArtifacts@1
-  displayName: "Publish HTML"
-  inputs:
-    pathToPublish: './docs/_build'
-    artifactName: 'html'
+    - name: Install Pandoc
+      run: sudo apt-get install -y pandoc
+
+    - name: Build docs
+      run: |
+        git checkout -b gh-pages
+        cd docs
+        make html
+
+    - name: Publish HTML
+      uses: actions/upload-artifact@v2
+      with:
+        name: html
+        path: ./docs/_build
