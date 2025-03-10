@@ -1,0 +1,35 @@
+jobs:
+  - job: PublishPackage
+    dependsOn: 
+      - BuildPackage
+      - BuildDocs
+      - UnitTests
+    condition: and(succeeded('BuildPackage'), succeeded('BuildDocs'), succeeded('UnitTests'))
+    steps:
+      - download: current
+        artifact: drop
+        displayName: "Download Package Artifact"
+      - download: current
+        artifact: docs
+        displayName: "Download Docs Artifact"
+      - task: UsePythonVersion@0
+        inputs:
+          versionSpec: "${{ parameters.PythonBuildVersion }}"
+          addToPath: true
+        displayName: "Use Python ${{ parameters.PythonBuildVersion }}"
+      - script: |
+          python -m pip install --upgrade pip setuptools wheel
+          pip install -e .[ci]
+        displayName: "Install dependencies"
+      - task: PublishBuildArtifacts@1
+        displayName: "Publish HTML"
+        inputs:
+          pathToPublish: "$(Build.ArtifactStagingDirectory)/docs/_build/html"
+          artifactName: "html"
+      - task: TwineAuthenticate@1
+        inputs:
+          artifactFeed: "NQCP/NQCP_Tier2"
+      - task: CmdLine@2
+        inputs:
+          script: "python -m twine upload -r NQCP_Tier2 --config-file $(PYPIRC_PATH) dist/*.whl"
+          

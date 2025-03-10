@@ -1,0 +1,27 @@
+parameters:
+  - name: PythonBuildVersion
+    type: string
+    default: "3.11"
+
+
+trigger:
+  branches:
+    include:
+      - main
+  tags:
+    include:
+      - "v*"
+
+pool:
+  vmImage: ubuntu-latest
+
+jobs:
+  - template: TestTmpl.yaml
+    parameters:
+      PythonBuildVersion: ${{ parameters.PythonBuildVersion }}
+  - template: BuildTmpl.yaml
+    parameters:
+      PythonBuildVersion: ${{ parameters.PythonBuildVersion }}
+  - template: PublishTmpl.yaml
+    parameters:
+      PythonBuildVersion: ${{ parameters.PythonBuildVersion }}
