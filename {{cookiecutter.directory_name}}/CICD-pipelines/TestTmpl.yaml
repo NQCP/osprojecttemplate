@@ -1,0 +1,37 @@
+parameters:
+  - name: PythonBuildVersion
+    type: string
+    default: "3.11"
+
+jobs:
+  - job: "UnitTests"
+    steps:
+      - task: UsePythonVersion@0
+        inputs:
+          versionSpec: "${{ parameters.PythonBuildVersion }}"
+          addToPath: true
+        displayName: "Use Python ${{ parameters.PythonBuildVersion }}"
+      - script: |
+          python -m pip install --upgrade pip setuptools wheel
+          pip install -e .[ci]
+        displayName: "Install dependencies"
+      - script: |
+          pip install pytest pytest-cov pytest-azurepipelines
+          pytest --cov={{cookiecutter.package_name}} --cov-report=xml --junitxml=test-output-${{ parameters.PythonBuildVersion }}.xml
+        displayName: "Run pytest with coverage"
+      - task: PublishTestResults@2
+        inputs:
+          testResultsFormat: "JUnit"
+          testResultsFiles: "$(System.DefaultWorkingDirectory)/test-output-${{ parameters.PythonBuildVersion }}.xml"
+          failTaskOnFailedTests: true
+          testRunTitle: "Test Results for Python ${{ parameters.PythonBuildVersion }}"
+        displayName: "Publish test results"
+      - script: |
+          mypy -p {{cookiecutter.package_name}}
+        displayName: "Run mypy"
+      - task: PublishCodeCoverageResults@2
+        inputs:
+          codeCoverageTool: "Cobertura"
+          summaryFileLocation: "$(System.DefaultWorkingDirectory)/coverage.xml"
+          reportDirectory: "$(System.DefaultWorkingDirectory)/coverage-${{ parameters.PythonBuildVersion }}"
+        displayName: "Publish code coverage results"
