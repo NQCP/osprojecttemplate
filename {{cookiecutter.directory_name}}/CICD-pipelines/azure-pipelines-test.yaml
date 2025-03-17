@@ -13,9 +13,9 @@ pool:
   vmImage: ubuntu-latest
 
 jobs:
-  - template: TestTmpl.yaml
+  - template: CICD-pipelines/TestTmpl.yaml
     parameters:
       PythonBuildVersion: ${{ parameters.PythonBuildVersion }}
-  - template: BuildTmpl.yaml
+  - template: CICD-pipelines/BuildTmpl.yaml
     parameters:
       PythonBuildVersion: ${{ parameters.PythonBuildVersion }}

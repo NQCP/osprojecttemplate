@@ -3,7 +3,6 @@ parameters:
     type: string
     default: "3.12"
 
-
 trigger:
   branches:
     include:
@@ -16,12 +15,12 @@ pool:
   vmImage: ubuntu-latest
 
 jobs:
-  - template: TestTmpl.yaml
+  - template: CICD-pipelines/TestTmpl.yaml
     parameters:
       PythonBuildVersion: ${{ parameters.PythonBuildVersion }}
-  - template: BuildTmpl.yaml
+  - template: CICD-pipelines/BuildTmpl.yaml
     parameters:
       PythonBuildVersion: ${{ parameters.PythonBuildVersion }}
-  - template: PublishTmpl.yaml
+  - template: CICD-pipelines/PublishTmpl.yaml
     parameters:
       PythonBuildVersion: ${{ parameters.PythonBuildVersion }}
