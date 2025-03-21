@@ -1,8 +1,3 @@
-parameters:
-  - name: PythonBuildVersion
-    type: string
-    default: "{{ cookiecutter.parameters }}"
-
 pr:
   branches:
     include:
@@ -15,7 +10,7 @@ pool:
 jobs:
   - template: CICD-pipelines/TestTmpl.yaml
     parameters:
-      PythonBuildVersion: ${{ parameters.PythonBuildVersion }}
+      PythonBuildVersion: "{{ cookiecutter.parameters }}"
   - template: CICD-pipelines/BuildTmpl.yaml
     parameters:
-      PythonBuildVersion: ${{ parameters.PythonBuildVersion }}
+      PythonBuildVersion: "{{ cookiecutter.parameters }}"
