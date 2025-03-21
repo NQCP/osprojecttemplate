@@ -1,3 +1,8 @@
+parameters:
+  - name: PythonBuildVersion
+    type: string
+    default: "3.12"
+
 trigger:
   branches:
     include:
@@ -5,11 +10,6 @@ trigger:
   tags:
     include:
       - "v*"
-
-parameters:
-  - name: PythonBuildVersion
-    type: string
-    default: "3.12"      
 
 pool:
   vmImage: ubuntu-latest
