@@ -11,7 +11,7 @@ jobs:
         fetchTags: true
       - task: UsePythonVersion@0
         inputs:
-          versionSpec: "3.11"
+          versionSpec: "${{ parameters.PythonBuildVersion }}"
           addToPath: true
         displayName: "Use Python ${{ parameters.PythonBuildVersion }}"
       - script: |
