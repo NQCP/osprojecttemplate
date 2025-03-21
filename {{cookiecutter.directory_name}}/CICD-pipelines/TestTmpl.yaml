@@ -3,23 +3,23 @@ jobs:
     steps:
       - task: UsePythonVersion@0
         inputs:
-          versionSpec: "${{ parameters.PythonBuildVersion }}"
+          versionSpec: "{{ cookiecutter.parameters }}"
           addToPath: true
-        displayName: "Use Python ${{ parameters.PythonBuildVersion }}"
+        displayName: "Use Python '{{ cookiecutter.parameters }}'"
       - script: |
           python -m pip install --upgrade pip setuptools wheel
           pip install -e .[ci]
         displayName: "Install dependencies"
       - script: |
           pip install pytest pytest-cov pytest-azurepipelines
-          pytest --cov={{cookiecutter.package_name}} --cov-report=xml --junitxml=test-output-${{ parameters.PythonBuildVersion }}.xml
+          pytest --cov={{cookiecutter.package_name}} --cov-report=xml --junitxml=test-output-$"{{ cookiecutter.parameters }}".xml
         displayName: "Run pytest with coverage"
       - task: PublishTestResults@2
         inputs:
           testResultsFormat: "JUnit"
-          testResultsFiles: "$(System.DefaultWorkingDirectory)/test-output-${{ parameters.PythonBuildVersion }}.xml"
+          testResultsFiles: "$(System.DefaultWorkingDirectory)/test-output-'{{ cookiecutter.parameters }}'.xml"
           failTaskOnFailedTests: true
-          testRunTitle: "Test Results for Python ${{ parameters.PythonBuildVersion }}"
+          testRunTitle: "Test Results for Python '{{ cookiecutter.parameters }}'"
         displayName: "Publish test results"
       - script: |
           mypy -p {{cookiecutter.package_name}}
@@ -28,5 +28,5 @@ jobs:
         inputs:
           codeCoverageTool: "Cobertura"
           summaryFileLocation: "$(System.DefaultWorkingDirectory)/coverage.xml"
-          reportDirectory: "$(System.DefaultWorkingDirectory)/coverage-${{ parameters.PythonBuildVersion }}"
+          reportDirectory: "$(System.DefaultWorkingDirectory)/coverage-$'{{ cookiecutter.parameters }}'"
         displayName: "Publish code coverage results"

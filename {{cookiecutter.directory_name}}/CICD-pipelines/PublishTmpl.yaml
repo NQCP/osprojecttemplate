@@ -14,9 +14,9 @@ jobs:
         displayName: "Download Docs Artifact"
       - task: UsePythonVersion@0
         inputs:
-          versionSpec: "${{ parameters.PythonBuildVersion }}"
+          versionSpec: "{{ cookiecutter.parameters }}"
           addToPath: true
-        displayName: "Use Python ${{ parameters.PythonBuildVersion }}"
+        displayName: "Use Python '{{ cookiecutter.parameters }}'"
       - script: |
           python -m pip install --upgrade pip setuptools wheel
           pip install -e .[ci]
