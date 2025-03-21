@@ -11,11 +11,11 @@ pool:
 
 jobs:
   - template: CICD-pipelines/TestTmpl.yaml
-    parameters:
+  - parameters:
       PythonBuildVersion: "{{ cookiecutter.parameters }}"
   - template: CICD-pipelines/BuildTmpl.yaml
-    parameters:
+  -  parameters:
       PythonBuildVersion: "{{ cookiecutter.parameters }}"
   - template: CICD-pipelines/PublishTmpl.yaml
-    parameters:
+  - parameters:
       PythonBuildVersion: "{{ cookiecutter.parameters }}"
