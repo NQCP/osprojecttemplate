@@ -1,8 +1,3 @@
-parameters:
-  - name: PythonBuildVersion
-    type: string
-    default: "3.12"
-
 pr:
   branches:
     include:
@@ -11,6 +6,11 @@ pr:
 
 pool:
   vmImage: ubuntu-latest
+
+parameters:
+  - name: PythonBuildVersion
+    type: string
+    default: "3.12"  
 
 jobs:
   - template: CICD-pipelines/TestTmpl.yaml
