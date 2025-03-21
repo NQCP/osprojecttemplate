@@ -1,7 +1,7 @@
 parameters:
   - name: PythonBuildVersion
     type: string
-    default: "3.12"
+    default: "{{ cookiecutter.parameters }}"
 
 pr:
   branches:
