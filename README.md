@@ -13,7 +13,7 @@ The **first step** is to make a new environment and install the cookiecutter pac
 Launch a prompt and type:
 
 ```console
-conda create -n cookiecutter python=3.11
+conda create -n cookiecutter python=3.12
 conda activate cookiecutter
 pip install cookiecutter
 ```
