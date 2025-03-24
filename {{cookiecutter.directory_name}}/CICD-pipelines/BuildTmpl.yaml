@@ -6,9 +6,9 @@ jobs:
         fetchTags: true
       - task: UsePythonVersion@0
         inputs:
-          versionSpec: "{{ cookiecutter.parameters }}"
+          versionSpec: "3.12"
           addToPath: true
-        displayName: "Use Python '{{ cookiecutter.parameters }}'"
+        displayName: "Use Python '3.12'"
       - script: |
           python -m pip install --upgrade pip setuptools wheel
           pip install -e .[ci]
@@ -25,8 +25,8 @@ jobs:
     steps:
       - task: UsePythonVersion@0
         inputs:
-          versionSpec: "{{ cookiecutter.parameters }}"
-        displayName: "Use Python '{{ cookiecutter.parameters }}'"
+          versionSpec: "3.12"
+        displayName: "Use Python '3.12'"
       - script: |
           python -m pip install --upgrade pip setuptools wheel
           pip install -e .[ci]
