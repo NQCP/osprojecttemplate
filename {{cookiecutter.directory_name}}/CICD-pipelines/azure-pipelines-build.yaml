@@ -10,6 +10,6 @@ pool:
   vmImage: ubuntu-latest
 
 jobs:
-  - template: CICD-pipelines/TestTmpl.yaml
-  - template: CICD-pipelines/BuildTmpl.yaml
-  - template: CICD-pipelines/PublishTmpl.yaml
+  - template: TestTmpl.yaml
+  - template: BuildTmpl.yaml
+  - template: PublishTmpl.yaml
