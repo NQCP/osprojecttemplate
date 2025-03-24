@@ -17,20 +17,26 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
-        python-version: ["3.10"]
+        python-version: ["3.10", "3.11", "3.12"]
         exclude:
           - os: windows-latest
             python-version: 3.9
-          - os: windows-latest
-            python-version: 3.10
+
+            # we expect python-version: 3.10 as sphinx might not be compatible with 3.10
+
     env:
       OS: {{cookiecutter.a_start}}{ matrix.os }{{cookiecutter.a_end}}
-      UPLOAD_TO_GHPAGES: {{cookiecutter.a_start}}{ matrix.os == 'ubuntu-latest' && matrix.python-version == '3.10' && github.event_name == 'push' && github.ref == 'refs/heads/main' }{{cookiecutter.a_end}}
-      # we expect no warnings from Sphinx in 3.10
-      # The std-lib docstring of IntEnum in 3.11.0 is not valid
-      # causing errors like in the docstring of from_bytes (from Int)
-      # WARNING: Inline interpreted text or phrase reference start-string without end-string.
-      SPHINX_WARNINGS_AS_ERROR: {{cookiecutter.a_start}}{ matrix.python-version == '3.10' }{{cookiecutter.a_end}}
+      # Documentation is uploaded to GitHub Pages only for:
+      # - OS: ubuntu-latest
+      # - Python version: 3.12
+      # - Event: push to the main branch
+      UPLOAD_TO_GHPAGES: {{cookiecutter.a_start}}{ matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12' && github.event_name == 'push' && github.ref == 'refs/heads/main' }{{cookiecutter.a_end}}
+      # Known Sphinx issues:
+      # - Python 3.10: No warnings are expected.
+      # - Python 3.11: The standard library's IntEnum docstring in Python 3.11.0 is invalid,
+      #   causing Sphinx warnings like:
+      #   WARNING: Inline interpreted text or phrase reference start-string without end-string. (docstring of from_bytes (from Int))
+      SPHINX_WARNINGS_AS_ERROR: {{cookiecutter.a_start}}{ matrix.python-version == '3.12' }{{cookiecutter.a_end}}
       SPHINX_OPTS: "-v"
     steps:
     - uses: actions/checkout@v3.5.3
