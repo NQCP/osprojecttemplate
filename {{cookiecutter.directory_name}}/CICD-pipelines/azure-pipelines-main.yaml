@@ -10,6 +10,6 @@ pool:
   vmImage: ubuntu-latest
 
 jobs:
-  - template: TestTmpl.yaml
-  - template: BuildTmpl.yaml
-  - template: PublishTmpl.yaml
+  - template: Test.yaml
+  - template: Build.yaml
+  - template: Publish.yaml
