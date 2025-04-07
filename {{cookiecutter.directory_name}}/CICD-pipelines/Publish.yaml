@@ -1,35 +1,28 @@
-jobs:
-  - job: PublishPackage
-    dependsOn: 
-      - BuildPackage
-      - BuildDocs
-      - UnitTests
-    condition: and(succeeded('BuildPackage'), succeeded('BuildDocs'), succeeded('UnitTests'))
-    steps:
-      - download: current
-        artifact: drop
-        displayName: "Download Package Artifact"
-      - download: current
-        artifact: docs
-        displayName: "Download Docs Artifact"
-      - task: UsePythonVersion@0
-        inputs:
-          versionSpec: "3.12"
-          addToPath: true
-        displayName: "Use Python 3.12"
-      - script: |
-          python -m pip install --upgrade pip setuptools wheel
-          pip install -e .[ci]
-        displayName: "Install dependencies"
-      - task: PublishBuildArtifacts@1
-        displayName: "Publish HTML"
-        inputs:
-          pathToPublish: "$(Build.ArtifactStagingDirectory)/docs/_build/html"
-          artifactName: "html"
-      - task: TwineAuthenticate@1
-        inputs:
-          artifactFeed: "NQCP/NQCP_Tier2"
-      - task: CmdLine@2
-        inputs:
-          script: "python -m twine upload -r NQCP_Tier2 --config-file $(PYPIRC_PATH) dist/*.whl"
-          
+# This pipeline is used to publish the package to the NQCP_Tier2 feed and push the documentation to another repository.
+# It is triggered by the completion of the Build pipeline.
+steps:
+  - script: |
+      git clone https://$(TARGET_REPO_TOKEN)@dev.azure.com/NQCP/NQCP/_git/NQCP-dp-git-webappdocs
+
+      cd NQCP-dp-git-webappdocs
+      
+      mkdir -p webappdocs/_build/html/{{cookiecutter.package_name}}
+
+      cp -r $BUILD_SOURCESDIRECTORY/docs/_build/html/* webappdocs/_build/html/{{cookiecutter.package_name}}
+
+      cd webappdocs
+      git config user.email "ci-bot@example.com"
+      git config user.name  "ci-bot"
+      git add .
+      git commit -m "Update documentation"
+      git push https://$(TARGET_REPO_TOKEN)@dev.azure.com/NQCP/NQCP/_git/NQCP-dp-git-webappdocs
+    displayName: 'Push Documentation to Another Repo'
+    env:
+      TARGET_REPO_TOKEN: $(TARGET_REPO_TOKEN)
+  - task: TwineAuthenticate@1
+    inputs:
+      artifactFeed: "NQCP/NQCP_Tier2"
+  - task: CmdLine@2
+    inputs:
+      script: "python -m twine upload -r NQCP_Tier2 --config-file $(PYPIRC_PATH) dist/*.whl"
+       

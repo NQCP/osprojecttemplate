@@ -1,60 +1,22 @@
-jobs:
-  - job: BuildPackage
-    steps:
-      - checkout: self
-        fetchDepth: 0
-        fetchTags: true
-      - task: UsePythonVersion@0
-        inputs:
-          versionSpec: "3.12"
-          addToPath: true
-        displayName: "Use Python 3.12"
-      - script: |
-          python -m pip install --upgrade pip setuptools wheel
-          pip install -e .[ci]
-        displayName: "Install dependencies"
-      - script: |
-          python -m pip install --upgrade pip
-          pip install build twine
-          python -m build
-        displayName: "Build package"
-      - publish: $(Build.ArtifactStagingDirectory)
-        artifact: drop
-        displayName: "Publish Artifact"
-  - job: BuildDocs
-    steps:
-      - task: UsePythonVersion@0
-        inputs:
-          versionSpec: "3.12"
-        displayName: "Use Python 3.12"
-      - script: |
-          python -m pip install --upgrade pip setuptools wheel
-          pip install -e .[ci]
-        displayName: "Install dependencies"
-      - script: |
-          sudo apt-get install -y pandoc
-        displayName: "Install Pandoc"
-      - script: |
-          git checkout -b gp-pages
-          cd docs
-          make html
-        displayName: "Build docs"
-      
-      - script: |
-          git clone https://$(TARGET_REPO_TOKEN)@dev.azure.com/NQCP/NQCP/_git/NQCP-dp-git-webappdocs
-
-          cd NQCP-dp-git-webappdocs
-          
-          mkdir -p webappdocs/_build/html/{{cookiecutter.package_name}}
-   
-          cp -r $BUILD_SOURCESDIRECTORY/docs/_build/html/* webappdocs/_build/html/{{cookiecutter.package_name}}
-  
-          cd webappdocs
-          git config user.email "ci-bot@example.com"
-          git config user.name  "ci-bot"
-          git add .
-          git commit -m "Update documentation"
-          git push https://$(TARGET_REPO_TOKEN)@dev.azure.com/NQCP/NQCP/_git/NQCP-dp-git-webappdocs
-        displayName: 'Push Documentation to Another Repo'
-        env:
-          TARGET_REPO_TOKEN: $(TARGET_REPO_TOKEN)
+steps:
+  - script: |
+      python -m pip install --upgrade pip setuptools wheel
+      pip install -e .[ci]
+    displayName: "Install dependencies"
+  - script: |
+      python -m pip install --upgrade pip
+      pip install build twine
+      python -m build
+    displayName: "Build package"
+  - script: |
+      python -m pip install --upgrade pip setuptools wheel
+      pip install -e .[ci]
+    displayName: "Install dependencies"
+  - script: |
+      sudo apt-get install -y pandoc
+    displayName: "Install Pandoc"
+  - script: |
+      git checkout -b gp-pages
+      cd docs
+      make html
+    displayName: "Build docs"
