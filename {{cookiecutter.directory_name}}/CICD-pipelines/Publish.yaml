@@ -25,4 +25,3 @@ steps:
   - task: CmdLine@2
     inputs:
       script: "python -m twine upload -r NQCP_Tier2 --config-file $(PYPIRC_PATH) dist/*.whl"
-       
