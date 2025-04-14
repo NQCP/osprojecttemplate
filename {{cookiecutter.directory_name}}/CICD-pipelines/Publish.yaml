@@ -23,7 +23,7 @@ steps:
     inputs:
       artifactFeed: "NQCP/NQCP_Tier2"
   - task: CmdLine@2
-  - inputs:
+    inputs:
       script: |
         python -m twine upload -r NQCP_Tier2 --config-file $(PYPIRC_PATH) dist/*.whl --skip-existing
     displayName: "Upload package to PyPI feed"
