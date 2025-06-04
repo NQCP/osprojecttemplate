@@ -1,17 +1,9 @@
+    
 steps:
   - script: |
-      python -m pip install --upgrade pip setuptools wheel
-      pip install -e .[ci]
-    displayName: "Install dependencies"
-  - script: |
-      python -m pip install --upgrade pip
       pip install build twine
       python -m build
     displayName: "Build package"
-  - script: |
-      python -m pip install --upgrade pip setuptools wheel
-      pip install -e .[ci]
-    displayName: "Install dependencies"
   - script: |
       sudo apt-get install -y pandoc
     displayName: "Install Pandoc"

@@ -1,3 +1,4 @@
+
 steps:
   - script: |
       python -m pip install --upgrade pip setuptools wheel
@@ -5,7 +6,7 @@ steps:
     displayName: "Install dependencies"
   - script: |
       pip install pytest pytest-cov pytest-azurepipelines
-      pytest --cov={{cookiecutter.package_name}} --cov-report=xml --junitxml=test-output-$3.12.xml
+      pytest --cov={{cookiecutter.package_name}} --cov-report=xml --junitxml=test-output-3.12.xml
     displayName: "Run pytest with coverage"
   - task: PublishTestResults@2
     inputs:
@@ -21,5 +22,5 @@ steps:
     inputs:
       codeCoverageTool: "Cobertura"
       summaryFileLocation: "$(System.DefaultWorkingDirectory)/coverage.xml"
-      reportDirectory: "$(System.DefaultWorkingDirectory)/coverage-$3.12"
+      reportDirectory: "$(System.DefaultWorkingDirectory)/coverage-3.12"
     displayName: "Publish code coverage results"
