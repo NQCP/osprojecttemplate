@@ -1,0 +1,14 @@
+    
+steps:
+  - script: |
+      pip install build twine
+      python -m build
+    displayName: "Build package"
+  - script: |
+      sudo apt-get install -y pandoc
+    displayName: "Install Pandoc"
+  - script: |
+      git checkout -b gp-pages
+      cd docs
+      make html
+    displayName: "Build docs"

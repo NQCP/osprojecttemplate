@@ -1,0 +1,23 @@
+trigger:
+  branches:
+    include:
+      - main
+  tags:
+    include:
+      - "v*"
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - checkout: self
+    fetchDepth: 0
+    fetchTags: true
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: "3.12"
+      addToPath: true
+    displayName: "Use Python 3.12"
+  - template: Test.yaml
+  - template: Build.yaml
+  - template: Publish.yaml
