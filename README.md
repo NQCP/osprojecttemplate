@@ -1,4 +1,4 @@
-This repo is deprecated use https://NQCP@dev.azure.com/NQCP/NQCP/_git/NQCP-software-PythonPackageBootstrapper
+#This repo is deprecated use https://NQCP@dev.azure.com/NQCP/NQCP/_git/NQCP-software-PythonPackageBootstrapper
 # Cookie Cutter Template
 <p align="center">
   <img src="https://img.shields.io/static/v1?style=for-the-badge&label=code-status&message=Good&color=green"/>
